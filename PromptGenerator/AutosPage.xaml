@@ -1,0 +1,45 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionAuto.AutosPage"
+             Title="Autos">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Entry x:Name="txtMarca" Placeholder="Marca"/>
+        <Entry x:Name="txtModelo" Placeholder="Modelo"/>
+        <Entry x:Name="txtAno" Placeholder="Año" Keyboard="Numeric"/>
+
+        <Button Text="Agregar Auto" Clicked="OnAgregarClicked"/>
+
+        <CollectionView x:Name="listaAutos" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Eliminar"
+                                   BackgroundColor="Red"
+                                   Invoked="OnEliminarClicked"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <!-- Tarjeta visual del auto -->
+                        <Border Stroke="LightGray"
+                        StrokeShape="RoundRectangle 8"
+                        Margin="5"
+                        Padding="10"
+                        BackgroundColor="White">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="{Binding Marca}"
+                               FontAttributes="Bold"
+                               FontSize="16"/>
+                                <Label Text="{Binding Modelo}" FontSize="14"/>
+                                <Label Text="{Binding Año, StringFormat='Año: {0}'}" FontSize="13"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>
